@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createApiErrorResponse } from "@/lib/apiErrorHandler";
 import { getApiBaseUrl } from "@/app/lib/config";
+import { methodNotAllowed } from "@/app/lib/api/proxy";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
@@ -85,4 +86,21 @@ function buildForwardHeaders(
   }
 
   return headers;
+}
+
+
+export async function POST() {
+  return methodNotAllowed("POST", ["GET"]);
+}
+
+export async function PUT() {
+  return methodNotAllowed("PUT", ["GET"]);
+}
+
+export async function DELETE() {
+  return methodNotAllowed("DELETE", ["GET"]);
+}
+
+export async function PATCH() {
+  return methodNotAllowed("PATCH", ["GET"]);
 }

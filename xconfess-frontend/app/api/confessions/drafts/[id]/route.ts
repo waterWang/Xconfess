@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getApiBaseUrl } from "@/app/lib/config";
+import { methodNotAllowed } from "@/app/lib/api/proxy";
 
 /**
  * ASSUMPTION: see app/api/confessions/drafts/route.ts — same proxy
@@ -96,4 +97,13 @@ export async function DELETE(req: NextRequest, { params }: RouteContext) {
       { status: 502 },
     );
   }
+}
+
+
+export async function GET() {
+  return methodNotAllowed("GET", ["PATCH, POST, DELETE"]);
+}
+
+export async function PUT() {
+  return methodNotAllowed("PUT", ["PATCH, POST, DELETE"]);
 }

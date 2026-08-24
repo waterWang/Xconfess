@@ -1,5 +1,6 @@
 import { createApiErrorResponse } from "@/lib/apiErrorHandler";
 import { getApiBaseUrl } from "@/app/lib/config";
+import { methodNotAllowed } from "@/app/lib/api/proxy";
 
 
 export async function GET(request: Request) {
@@ -94,3 +95,16 @@ export async function PATCH(request: Request) {
   }
 }
 
+
+
+export async function POST() {
+  return methodNotAllowed("POST", ["GET, PATCH"]);
+}
+
+export async function PUT() {
+  return methodNotAllowed("PUT", ["GET, PATCH"]);
+}
+
+export async function DELETE() {
+  return methodNotAllowed("DELETE", ["GET, PATCH"]);
+}

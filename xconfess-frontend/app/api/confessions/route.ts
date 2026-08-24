@@ -2,6 +2,7 @@ import { normalizeConfession } from "../../lib/utils/normalizeConfession";
 import { createApiErrorResponse } from "@/lib/apiErrorHandler";
 import { getApiBaseUrl } from "@/app/lib/config";
 import { getOrCreateRequestId, requestIdResponseHeaders } from "@/app/lib/utils/requestId";
+import { methodNotAllowed } from "@/app/lib/api/proxy";
 
 export async function POST(request: Request) {
   const BASE_API_URL = getApiBaseUrl();
@@ -171,3 +172,16 @@ export async function GET(request: Request) {
   }
 }
 
+
+
+export async function PUT() {
+  return methodNotAllowed("PUT", ["POST, GET"]);
+}
+
+export async function DELETE() {
+  return methodNotAllowed("DELETE", ["POST, GET"]);
+}
+
+export async function PATCH() {
+  return methodNotAllowed("PATCH", ["POST, GET"]);
+}

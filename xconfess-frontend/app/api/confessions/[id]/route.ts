@@ -1,6 +1,7 @@
 import { getApiBaseUrl } from "@/app/lib/config";
 import { createApiErrorResponse } from "@/lib/apiErrorHandler";
 import { getOrCreateRequestId, requestIdResponseHeaders } from "@/app/lib/utils/requestId";
+import { methodNotAllowed } from "@/app/lib/api/proxy";
 
 
 export async function GET(
@@ -248,4 +249,21 @@ function aggregateReactions(reactions: Array<{ emoji?: string }> | undefined): {
     else if (e === "❤️" || e === "love") love++;
   }
   return { like, love };
+}
+
+
+export async function POST() {
+  return methodNotAllowed("POST", ["GET"]);
+}
+
+export async function PUT() {
+  return methodNotAllowed("PUT", ["GET"]);
+}
+
+export async function DELETE() {
+  return methodNotAllowed("DELETE", ["GET"]);
+}
+
+export async function PATCH() {
+  return methodNotAllowed("PATCH", ["GET"]);
 }
