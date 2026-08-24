@@ -1,5 +1,6 @@
 import { getApiBaseUrl } from "@/app/lib/config";
 import { createApiErrorResponse } from "@/lib/apiErrorHandler";
+import { methodNotAllowed } from "@/app/lib/api/proxy";
 
 
 const ALLOWED_TYPES = new Set([
@@ -83,3 +84,20 @@ export async function POST(
   }
 }
 
+
+
+export async function GET() {
+  return methodNotAllowed("GET", ["POST"]);
+}
+
+export async function PUT() {
+  return methodNotAllowed("PUT", ["POST"]);
+}
+
+export async function DELETE() {
+  return methodNotAllowed("DELETE", ["POST"]);
+}
+
+export async function PATCH() {
+  return methodNotAllowed("PATCH", ["POST"]);
+}

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { methodNotAllowed } from "@/app/lib/api/proxy";
 
 /**
  * ASSUMPTION: real backend lives at BACKEND_URL (env var) and exposes
@@ -82,4 +83,12 @@ export async function DELETE(req: NextRequest) {
       { status: 502 },
     );
   }
+}
+
+export async function PUT() {
+  return methodNotAllowed("PUT", ["GET, POST, DELETE"]);
+}
+
+export async function PATCH() {
+  return methodNotAllowed("PATCH", ["GET, POST, DELETE"]);
 }

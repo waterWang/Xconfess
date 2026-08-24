@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { getApiBaseUrl } from "@/app/lib/config";
+import { methodNotAllowed } from "@/app/lib/api/proxy";
 
 const SESSION_COOKIE_NAME = "xconfess_session";
 
@@ -43,4 +44,21 @@ export async function GET(
       { status: 503 },
     );
   }
+}
+
+
+export async function POST() {
+  return methodNotAllowed("POST", ["GET"]);
+}
+
+export async function PUT() {
+  return methodNotAllowed("PUT", ["GET"]);
+}
+
+export async function DELETE() {
+  return methodNotAllowed("DELETE", ["GET"]);
+}
+
+export async function PATCH() {
+  return methodNotAllowed("PATCH", ["GET"]);
 }

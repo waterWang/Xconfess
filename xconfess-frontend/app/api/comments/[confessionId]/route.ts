@@ -1,6 +1,7 @@
 import { createApiErrorResponse } from "@/lib/apiErrorHandler";
 import { getApiBaseUrl } from "@/app/lib/config";
 import { getOrCreateRequestId } from "@/app/lib/utils/requestId";
+import { methodNotAllowed } from "@/app/lib/api/proxy";
 
 
 async function sha256Hex(input: string): Promise<string> {
@@ -169,4 +170,20 @@ export async function POST(
       route: "POST /api/comments/[confessionId]"
     });
   }
+}
+
+export async function GET() {
+  return methodNotAllowed("GET", ["POST"]);
+}
+
+export async function PUT() {
+  return methodNotAllowed("PUT", ["POST"]);
+}
+
+export async function DELETE() {
+  return methodNotAllowed("DELETE", ["POST"]);
+}
+
+export async function PATCH() {
+  return methodNotAllowed("PATCH", ["POST"]);
 }
